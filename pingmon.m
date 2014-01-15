@@ -1,5 +1,7 @@
-limit=5;
-timestep=10;
+close all
+
+limit=2000;
+timestep=20;
 address='google.com';
 tic
 for i=1:limit
@@ -7,7 +9,7 @@ for i=1:limit
     status=[];
     [~,answer]=dos(['ping ' address]);
     position1=strfind(answer, 'time=');
-    position2=strfind(answer,'ms ');
+    position2=strfind(answer,'ms');
     curtime=floor(clock);
     hour=num2str(curtime(4));
     min=num2str(curtime(5));
@@ -36,5 +38,9 @@ for i=1:limit
     title(['Ping times to ' address])
     line([0 timeavg(i,1)],[0 0],'Color','r');
     
+    saveas(1,'ping.png','png');
+    
     pause(timestep)
+    
+    
 end
